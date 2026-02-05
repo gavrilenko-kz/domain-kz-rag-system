@@ -1,0 +1,17 @@
+# OCR & PDF Processing
+PyMuPDF>=1.23.0       # module 'fitz' - самый быстрый PDF движок
+pytesseract>=0.3.10   # OCR layer
+Pillow>=10.0.0        # module 'PIL' - обработка изображений перед OCR
+
+# Data Handling & Utilities
+numpy>=1.24.0         # Матричные операции и хранение эмбеддингов
+natsort>=8.4.0        # Правильная сортировка файлов (как в Windows)
+
+# AI & ML
+sentence-transformers>=2.2.2  # Для модели multilingual-e5
+transformers>=4.30.0          # Токенизация (AutoTokenizer)
+faiss-cpu>=1.7.4              # Векторный поиск (Facebook AI Similarity Search)
+ollama>=0.1.0                 # Клиент для локальной LLM (Qwen)
+
+# Telegram Bot & Async
+aiogram>=3.0.0        # Асинхронный фреймворк для Telegram UI
