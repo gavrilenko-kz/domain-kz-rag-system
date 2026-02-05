@@ -33,6 +33,7 @@
 ## Выводы системы:
 
 **Система анализирует источники**: [rag_answer_1](demo/rag_answer_1.png)
+
 **Система цитирует источники**: [rag_answer_2](demo/rag_answer_2.png)
 
 **Лог результата поиска Retrieval**: [retrieval_example](demo/retrieval_example.png)
