@@ -112,6 +112,7 @@
 
 **Открыт к сотрудничеству и профессиональным обсуждениям**
 
+
 **Telegram**: https://t.me/scuffy_kid
 
 **Email**: karona7560@gmail.com 
