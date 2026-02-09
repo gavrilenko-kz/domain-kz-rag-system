@@ -110,6 +110,6 @@
 
 # Контакты
 
-**Telegram**: https://t.me/scuffy_kid - Гавриленко Никита
+**Telegram**: https://t.me/scuffy_kid
 
-**Почта**: karona7560@gmail.com
+**Email**: karona7560@gmail.com 
