@@ -29,8 +29,8 @@
 - Произвести анализ-сравнение источников
 
 # 3. Архитектура системы
-**Offline**
 
+**Offline**
 PDF → OCR (Tesseract) → Heuristic Parser (MuPDF) → Token Chunking → E5 Embeddings → PostgreSQL (pgvector)
                                                                                             
 **Online**                                                                                  
