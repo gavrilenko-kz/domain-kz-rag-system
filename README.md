@@ -31,10 +31,12 @@
 # 3. Архитектура системы
 
 **Offline**
- PDF → OCR (Tesseract) → Heuristic Parser (MuPDF) → Token Chunking → E5 Embeddings → PostgreSQL (pgvector)
+
+PDF → OCR (Tesseract) → Heuristic Parser (MuPDF) → Token Chunking → E5 Embeddings → PostgreSQL (pgvector)
                                                                                             
-**Online**                                                                                  
- User Query → E5 Embeddings → Hybrid Search (BM25 + FAISS/pgvector) → Cosine Reranking → Qwen3:8B → Answer
+**Online**  
+
+User Query → E5 Embeddings → Hybrid Search (BM25 + FAISS/pgvector) → Cosine Reranking → Qwen3:8B → Answer
 
 # 3. Результат (demo) 
 
