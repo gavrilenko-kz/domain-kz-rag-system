@@ -28,6 +28,13 @@
 - Запросить цитату 
 - Произвести анализ-сравнение источников
 
+# 3. Архитектура системы
+**Offline**
+PDF → OCR (Tesseract) → Heuristic Parser (MuPDF) → Token Chunking → E5 Embeddings → PostgreSQL (pgvector)
+                                                                                            
+**Online**                                                                                  
+User Query → E5 Embeddings → Hybrid Search (BM25 + FAISS/pgvector) → Cosine Reranking → Qwen3:8B → Answer
+
 # 3. Результат (demo) 
 
 ## Выводы системы:
@@ -83,23 +90,33 @@
 
 **Создание эмбеддингов** осуществляется с помощью эмбеддинг-модели `multilingual-e5`
 
+### E. Data Storage (VectorDB)
+**Хранение корпуса документов и векторов** реализовано на базе реляционной БД:
+- **PostgreSQL**: хранение очищенного текста, метаданных и offset-маппинга.
+- **pgvector**: хранение и векторный поиск эмбеддингов в едином контуре с метаданными.
+
 ## Online block
 
 ### A. User Query 
 
 **Создается вектор** запроса пользователя
 
-### B. Semantic Retrieval
-
-**Семантическое сопоставление `query` и `embeddings`** происходит с помощью методов:
-- `cosine similarity`
-- `IndexFlatIP` индексатора `FAISS`. С помощью него же происходит фильтрация по `top-k`
+### B. Hybrid Retrieval & Reranking
+**Двухступенчатая система поиска** для максимизации релевантности:
+- **Лексический поиск (BM25)**: первичный отбор кандидатов по ключевым словам.
+- **Векторный поиск**: фильтрация через `IndexFlatIP` (FAISS) и `pgvector`.
+- **Reranking**: итоговая пересортировка кандидатов через `cosine similarity` перед подачей контекста в LLM.
 
 ### C. LLM Answer Generation
 
 **Модель**: `Qwen3:8B` размещенная локально
 
 Модель выступает как **интерпретатор** данных, которые выдал `retrieval`
+
+### D. Evaluation Framework & API
+Разработан собственный модуль оценки качества:
+- Замер точности (Accuracy) попадания релевантного контекста в top-k выдачи Retrieval-модуля.
+- **FastAPI**: система обернута в REST API для удобного локального тестирования метрик и инференса LLM.
 
 ### Latency
 **Узким горлышком** времени ответа является генерация токенов LLM. 
@@ -110,9 +127,8 @@
 
 # Контакты
 
-**Открыт к сотрудничеству и профессиональным обсуждениям**
-
-
 **Telegram**: https://t.me/scuffy_kid
 
 **Email**: karona7560@gmail.com 
+
+**LinkedIn**: https://linkedin.com/in/nikita-gavrilenko-kz
