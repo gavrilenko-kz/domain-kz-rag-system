@@ -93,7 +93,7 @@ User Query → E5 Embeddings → Hybrid Search (BM25 + FAISS/pgvector) → Cosin
 
 **Создание эмбеддингов** осуществляется с помощью эмбеддинг-модели `multilingual-e5`
 
-### E. Data Storage (VectorDB)
+### E. Data Storage (PostgreSQL + pgvector)
 **Хранение корпуса документов и векторов** реализовано на базе реляционной БД:
 - **PostgreSQL**: хранение очищенного текста, метаданных и offset-маппинга.
 - **pgvector**: хранение и векторный поиск эмбеддингов с метаданными.
